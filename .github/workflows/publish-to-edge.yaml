@@ -14,19 +14,17 @@ on:
       - track/**
 
 jobs:
-  tests:
-    # tests expected to be run only on push
-    if: (github.event_name == 'push')
-    name: Run the tests
-    uses: ./.github/workflows/ci.yaml
 
   publish-charm:
     name: Publish Charm
-    needs:
-      - tests
     runs-on: ubuntu-latest
     steps:
+      - name: Run the tests on push
+        if: (github.event_name == 'push')
+        id: tests
+        uses: ./.github/workflows/ci.yaml
       - name: Checkout
+        if: (((github.event_name == 'pull_request') && always()) || ((github.event_name == 'push') && steps.tests.outcome == 'success'))
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
