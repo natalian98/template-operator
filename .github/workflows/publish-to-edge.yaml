@@ -1,4 +1,4 @@
-name: Test and publish to edge
+name: Test on push and publish
 
 on:
   push:
@@ -7,8 +7,16 @@ on:
       - main
       - track/**
 
+  pull_request:
+    branches:
+      - master
+      - main
+      - track/**
+
 jobs:
   tests:
+    # tests expected to be run only on push
+    if: (github.event_name == 'push')
     name: Run the tests
     uses: ./.github/workflows/ci.yaml
 
