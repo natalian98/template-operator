@@ -24,9 +24,9 @@ jobs:
     # expected to be run only on push
     runs-on: ubuntu-latest
     needs: tests
-    if: (github.event_name == 'push')
+    # if: (github.event_name == 'push')
     steps:
-      - run: echo "conditonal run"
+      - run: echo "conditional run"
 
   publish-charm:
     name: Publish Charm
