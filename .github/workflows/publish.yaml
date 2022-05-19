@@ -15,16 +15,30 @@ on:
 
 jobs:
 
+  tests:
+    name: Run the tests
+    if: (github.event_name == 'push')
+    uses: ./.github/workflows/ci.yaml
+
+  conditional_job:
+    # expected to be run only on push
+    runs-on: ubuntu-latest
+    needs: tests
+    if: (github.event_name == 'push')
+    steps:
+      - run: echo "conditonal run"
+
   publish-charm:
     name: Publish Charm
     runs-on: ubuntu-latest
+    needs: conditional_job
+    if: always()
     steps:
-      - name: Run the tests on push
-        if: (github.event_name == 'push')
-        id: tests
-        uses: ./.github/workflows/ci.yaml
+      - name: Fail if tests not successful on push
+        if: ${{ needs.conditional_job.result == 'failure' }}
+        run: exit 1
       - name: Checkout
-        if: (((github.event_name == 'pull_request') && always()) || ((github.event_name == 'push') && steps.tests.outputs.exit_code == 0))
+        # should continue to run if conditional job succeeded
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
