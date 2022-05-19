@@ -17,6 +17,7 @@ jobs:
 
   tests:
     name: Run the tests
+    if: (github.event_name == 'push')
     uses: ./.github/workflows/ci.yaml
 
   conditional_job:
