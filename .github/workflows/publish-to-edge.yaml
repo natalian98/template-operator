@@ -25,6 +25,7 @@ jobs:
         uses: ./.github/workflows/ci.yaml
       - name: Checkout
         # if: (((github.event_name == 'pull_request') && always()) || ((github.event_name == 'push') && steps.tests.outcome == 'success'))
+        if: always()
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
