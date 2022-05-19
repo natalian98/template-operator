@@ -1,0 +1,29 @@
+name: Test on push and publish
+
+# On push to a "special" branch, we:
+# * always publish to charmhub at latest/edge/branchname
+# * always run tests
+# where a "special" branch is one of main/master or track/**, as 
+# by convention these branches are the source for a corresponding
+# charmhub edge channel.  
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - track/**
+
+jobs:
+
+  tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/tests.yaml
+
+  # publish runs in series with tests, and only publishes if tests passes
+  publish-charm:
+    name: Publish Charm
+    runs-on: ubuntu-latest
+    needs: tests
+    uses: ./.github/workflows/publish.yaml
