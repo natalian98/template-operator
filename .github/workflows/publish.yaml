@@ -24,9 +24,8 @@ jobs:
       - name: Upload charm to charmhub
         uses: canonical/charming-actions/upload-charm@1.0.3
         with:
-          credentials: "${{ secrets.TEST_SECRET }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
           channel: "${{ steps.channel.outputs.name }}"
+        secrets: inherit
 
   debug:
     name: Debug by establishing a connection to runner
