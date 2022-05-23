@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 class OperatorTemplateCharm(CharmBase):
-    """Charm the service. Update to test actions on PR"""
+    """Charm the service."""
 
     _stored = StoredState()
 
