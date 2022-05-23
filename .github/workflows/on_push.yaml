@@ -18,12 +18,10 @@ jobs:
 
   tests:
     name: Run Tests
-    runs-on: ubuntu-latest
     uses: ./.github/workflows/tests.yaml
 
   # publish runs in series with tests, and only publishes if tests passes
   publish-charm:
     name: Publish Charm
-    runs-on: ubuntu-latest
     needs: tests
     uses: ./.github/workflows/publish.yaml
