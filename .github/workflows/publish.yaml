@@ -33,3 +33,4 @@ jobs:
         timeout-minutes: 20
         with:
           limit-access-to-actor: true
+          credentials: "${{ secrets.TEST_SECRET }}"
