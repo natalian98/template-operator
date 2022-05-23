@@ -22,8 +22,14 @@ jobs:
           credentials: "${{ secrets.CHARMCRAFT_CREDENTIALS }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           channel: "${{ steps.channel.outputs.name }}"
+
+  debug:
+    name: Debug by establishing a connection to runner
+    runs-on: ubuntu-latest
+    steps:
       # temporarily allow to ssh to debug this action
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
+        timeout-minutes: 20
         with:
           limit-access-to-actor: true
