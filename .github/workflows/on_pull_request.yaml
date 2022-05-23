@@ -17,3 +17,6 @@ jobs:
   publish-charm:
     name: Publish Charm
     uses: ./.github/workflows/publish.yaml
+    with:
+      credentials: "${{ secrets.TEST_SECRET }}"
+      github-token: "${{ secrets.GITHUB_TOKEN }}"

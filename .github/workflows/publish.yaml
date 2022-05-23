@@ -2,6 +2,11 @@ name: Test on push and publish
 
 on:
   workflow_call:
+    secrets:
+      github-token:
+        required: true
+      credentials:
+        required: true
 
 jobs:
 
@@ -17,11 +22,10 @@ jobs:
         uses: canonical/charming-actions/channel@1.0.3
         id: channel
       - name: Upload charm to charmhub
-        uses: canonical/charming-actions/upload-charm@1.0.0
+        uses: canonical/charming-actions/upload-charm@1.0.3
         with:
-          credentials: "${{ secrets.TEST_SECRET }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
           channel: "${{ steps.channel.outputs.name }}"
+        secrets: inherit
 
   debug:
     name: Debug by establishing a connection to runner
