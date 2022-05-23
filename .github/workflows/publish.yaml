@@ -19,7 +19,7 @@ jobs:
       - name: Upload charm to charmhub
         uses: canonical/charming-actions/upload-charm@1.0.3
         with:
-          credentials: "${{ secrets.CHARMCRAFT_CREDENTIALS }}"
+          credentials: ${{ secrets.TEST_SECRET }}
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           channel: "${{ steps.channel.outputs.name }}"
 
@@ -33,4 +33,4 @@ jobs:
         timeout-minutes: 20
         with:
           limit-access-to-actor: true
-          credentials: "${{ secrets.TEST_SECRET }}"
+          credentials: ${{ secrets.TEST_SECRET }}
