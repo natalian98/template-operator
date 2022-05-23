@@ -17,3 +17,4 @@ jobs:
   publish-charm:
     name: Publish Charm
     uses: ./.github/workflows/publish.yaml
+    secrets: inherit
