@@ -23,7 +23,6 @@ jobs:
         id: channel
       - name: Upload charm to charmhub
         uses: canonical/charming-actions/upload-charm@1.0.3
-        secrets: inherit
         with:
           credentials: "${{ secrets.TEST_SECRET }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
