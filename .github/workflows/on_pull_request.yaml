@@ -19,4 +19,3 @@ jobs:
     uses: ./.github/workflows/publish.yaml
     secrets:
       credentials: "${{ secrets.TEST_SECRET }}"
-      github-token: "${{ secrets.GITHUB_TOKEN }}"
