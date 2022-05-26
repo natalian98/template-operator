@@ -3,8 +3,6 @@ name: Test on push and publish
 on:
   workflow_call:
     secrets:
-      github-token:
-        required: true
       credentials:
         required: true
 
@@ -24,7 +22,7 @@ jobs:
       - name: Upload charm to charmhub
         uses: canonical/charming-actions/upload-charm@1.0.3
         with:
-          credentials: "${{ secrets.TEST_SECRET }}"
+          credentials: "${{ secrets.credentials }}"
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           channel: "${{ steps.channel.outputs.name }}"
 
@@ -38,4 +36,5 @@ jobs:
         timeout-minutes: 20
         with:
           limit-access-to-actor: true
-          credentials: ${{ secrets.TEST_SECRET }}
+          credentials: ${{ secrets.credentials }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
