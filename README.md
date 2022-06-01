@@ -24,3 +24,4 @@ Please see the [Juju SDK docs](https://juju.is/docs/sdk) for guidelines on enhan
 charm following best practice guidelines, and
 [CONTRIBUTING.md](https://github.com/<name>/<operator>/blob/main/CONTRIBUTING.md) for developer
 guidance.
+test
